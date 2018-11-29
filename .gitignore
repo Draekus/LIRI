@@ -1,5 +1,4 @@
-#GitIgnore
-node_modules/
-.DS_Store/
-.env/
-./api_keys.js
+/node_modules/
+/.DS_Store/
+/.env/
+/api_keys.js

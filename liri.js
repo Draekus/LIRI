@@ -19,7 +19,7 @@ const moment = require('moment');
 const keys = require('./keys');
 
 // Read api keys from api_keys file
-const api_key = require('./api_keys')
+const api_key = require('/ignore/api_keys')
 
 var spotify = new Spotify(keys.spotify)
 

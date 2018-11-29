@@ -1,0 +1,28 @@
+{
+  "name": "LIRI",
+  "version": "1.0.0",
+  "description": "LIRI is a _Language_ Interpretation and Recognition Interface that runs through the Node command-line.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgould94/LIRI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgould94/LIRI/issues"
+  },
+  "homepage": "https://github.com/pgould94/LIRI#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.1.0",
+    "inquirer": "^6.2.0",
+    "moment": "^2.22.2",
+    "node-spotify-api": "^1.0.7",
+    "npm": "^6.4.1"
+  }
+}

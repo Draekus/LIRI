@@ -19,7 +19,7 @@ const moment = require('moment');
 const keys = require('./keys');
 
 // Read api keys from api_keys file
-const api_key = require('/ignore/api_keys')
+const api_key = require('./ignored/api_keys')
 
 var spotify = new Spotify(keys.spotify)
 
@@ -51,7 +51,7 @@ inquirer.prompt([
         type: 'list',
         name: 'command',
         message: 'What would you like to do?',
-        choices: ['concert-this', 'spotify-this-song', 'movie-this', 'do-what-it-says']
+        choices: ['Search For A Concert', 'Search For A Song', 'Search For A Movie', 'Random']
     },
     {
         type: 'input',
@@ -64,7 +64,7 @@ inquirer.prompt([
 .then(function(answers) {
     let spacer = '*------------------------------------------------------------------*'
     // Logic that handles the inquierer answers
-    if (answers.command === 'spotify-this-song') {
+    if (answers.command === 'Search For A Song') {
 
         // Default spotify search logic
         if (answers.search === '') {
@@ -76,7 +76,7 @@ inquirer.prompt([
             spotifySearch(answers.search)
         }
     }
-    else if (answers.command === 'movie-this') {
+    else if (answers.command === 'Search For A Movie') {
         let movie = answers.search;
         axios({
             method:'get',
@@ -97,7 +97,7 @@ inquirer.prompt([
         });
     }
 
-    else if (answers.command === 'do-what-it-says') {
+    else if (answers.command === 'Random') {
         fs.readFile("random.txt", "UTF8", function(error, data){
             if(error){
                 console.log(error)
@@ -108,6 +108,19 @@ inquirer.prompt([
                 console.log(search[1])
                 spotifySearch(search[1])
 
+            }
+        });
+    }
+
+    else if (answers.command === 'Search For A Concert') {
+        axios({
+            method:'get',
+            url:`https://rest.bandsintown.com/artists/${answers.search}/events?app_id=${api_key.bandsintown}`,
+        })
+        .then(function (response) {
+            console.log(response)
+            for (var i = 0; i < response.data.length; i++) {
+                
             }
         });
     }

@@ -11,7 +11,7 @@ Firstly, you will need to open up your Terminal on Mac or Gitbash on windows. Th
 
 ![](images/npm.png)
 
-Next you will need to create an env file. To so create a new file in the root directory of the LIRI folder and title it '.env'. You will then need to paste the following code _EXACTLY_ and replace the placeholder text in quotes with your own spotify id and secret which you can get at [Spotify API](https://developer.spotify.com/).
+Next you will need to create an env file. So create a new file in the root directory of the LIRI folder and title it '.env'. You will then need to paste the following code _EXACTLY_ and replace the placeholder text in quotes with your own spotify id and secret which you can get at [Spotify API](https://developer.spotify.com/).
 
 ```js
 # Spotify API keys

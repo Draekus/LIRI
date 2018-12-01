@@ -43,10 +43,6 @@ function spotifySearch(song) {
             console.log(err)
             }
             
-            else {
-                console.log("Your search was logged!")
-                
-            }
         
         })
     

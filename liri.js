@@ -35,8 +35,20 @@ function spotifySearch(song) {
         let date = base.album.release_date
         let name = base.name
         let url = base.external_urls.spotify
-
-        console.log(`\n${spacer}\n\n  Song: ${name}\n\n  Artist: ${artist}\n\n  Album: ${album}\n\n  Release Date: ${date}\n\n  Spotify URL: ${url}\n\n${spacer}`)
+        let logString = `\n${spacer}\n\n  Song: ${name}\n\n  Artist: ${artist}\n\n  Album: ${album}\n\n  Release Date: ${date}\n\n  Spotify URL: ${url}\n\n${spacer}`
+        console.log(logString)
+        
+        fs.appendFile("log.txt", `${logString}`, function(err){
+            if (err){
+            console.log(err)
+            }
+            
+            else {
+                console.log("Your search was logged!")
+                
+            }
+        
+        })
     
 })
 .catch(function(err) {
@@ -80,7 +92,7 @@ inquirer.prompt([
         let movie = answers.search;
         axios({
             method:'get',
-            url:`http://www.omdbapi.com/?${api_key.omdb}&t=${movie}&type=movie&plot=short`,
+            url:`http://www.omdbapi.com/?apikey=${api_key.omdb}&t=${movie}&type=movie&plot=short`,
         })
         .then(function (response) {
             let title = response.data.Title;
@@ -91,9 +103,16 @@ inquirer.prompt([
             let language = response.data.Language;
             let plot = response.data.Plot;
             let actors = response.data.Actors;
-            console.log(response.data.Title)
+            let logString = `\n${spacer}\n\n  Title: ${title}\n\n  Release Date: ${release_date}\n\n  Actors: ${actors}\n\n  IMDB Rating: ${imdb_rating}\n\n  Rotten Tomatoes Rating: ${rotten_rating}\n\n  Country: ${country}\n\n  Language: ${language}\n\n  Plot: ${plot}\n\n${spacer}`
+
+            console.log(logString)
+            fs.appendFile("log.txt", `\n${moment()}\n${logString}`, function(err){
+                if (err){
+                console.log(err)
+                }
+                
             
-            console.log(`\n${spacer}\n\n  Title: ${title}\n\n  Release Date: ${release_date}\n\n  Actors: ${actors}\n\n  IMDB Rating: ${imdb_rating}\n\n  Rotten Tomatoes Rating: ${rotten_rating}\n\n  Country: ${country}\n\n  Language: ${language}\n\n  Plot: ${plot}\n\n${spacer}`)
+            })
         });
     }
 
@@ -105,11 +124,18 @@ inquirer.prompt([
     
             else {
                 let search = data.split('"')
-                console.log(search[1])
+                
                 spotifySearch(search[1])
 
             }
         });
+
+        fs.appendFile("log.txt", `\n${moment()}\n${logString}`, function(err){
+            if (err){
+            console.log(err)
+            }
+        
+        })
     }
 
     else if (answers.command === 'Search For A Concert') {
@@ -118,9 +144,23 @@ inquirer.prompt([
             url:`https://rest.bandsintown.com/artists/${answers.search}/events?app_id=${api_key.bandsintown}`,
         })
         .then(function (response) {
-            console.log(response)
-            for (var i = 0; i < response.data.length; i++) {
+            
+            for (var i = 0; i < 5; i++) {
+                let venue = response.data[i].venue.name;
+                let country = response.data[i].venue.country;
+                let city = response.data[i].venue.city;
+                let dateConvert = response.data[i].datetime.split('T')
+                let date = moment(dateConvert[0]).format("MM/DD/YYYY");
+                let logString = `\n${spacer}\n\n Venue: ${venue}\n\n Country: ${country}\n\n City: ${city}\n\n Date: ${date}\n\n${spacer}`
+                console.log(logString)
                 
+                fs.appendFile("log.txt", `\n${moment()}\n${logString}`, function(err){
+                    if (err){
+                    console.log(err)
+                    }
+                    
+                
+                })
             }
         });
     }

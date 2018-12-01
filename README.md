@@ -19,9 +19,6 @@ Next you will need to create an env file. So create a new file in the root direc
 SPOTIFY_ID='Your spotify ID'
 SPOTIFY_SECRET='Your spotify secret'
 ```
-Your file should look like this.
-
-![](images/env.png)
 
 Next you will need to create a folder called ignored inside the root directory. Inside that folder you will need to create a javascript file called 'api_keys.js'. Inside of that file you will then need to paste the following code _EXACTLY_ and replace the placeholder text in quotes with your own bandsintown and omdb keys which you can get from [OMDB API](http://www.omdbapi.com) and the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api).
 

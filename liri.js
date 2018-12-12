@@ -21,6 +21,7 @@ const keys = require('./keys');
 // Read api keys from api_keys file
 const api_key = require('./ignored/api_keys')
 
+// create spotify key object
 var spotify = new Spotify(keys.spotify)
 
 
